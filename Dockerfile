@@ -1,6 +1,6 @@
 FROM python:3.9-slim-buster
 
-ARG GITHUB_TOKEN # Move ARG instruction to the top
+ARG GITHUB_TOKEN
 
 WORKDIR /app
 
@@ -8,7 +8,9 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git \
     curl \
-    gnupg && \
+    gnupg \
+    libicu-dev \ # Install ICU development libraries
+    icu-devtools && \ #install icu dev tools
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null && \
     echo "deb [signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee -a /etc/apt/sources.list.d/github-cli.list && \
     apt-get update && \
