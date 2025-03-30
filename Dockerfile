@@ -17,6 +17,9 @@ RUN apt-get update && \
     apt-get install gh -y && \
     rm -rf /var/lib/apt/lists/*
 
+# Install the GitHub Actions Importer CLI tool
+RUN gh extension install github/actions-importer
+
 # Copy the Python script and any other necessary files
 COPY actions-script.py /app/actions-script.py
 
@@ -26,4 +29,3 @@ RUN pip install requests PyGithub python-gitlab python-dotenv
 
 # Command to run the script (optional, if you want to run the script by default)
 CMD ["python", "actions-script.py"]
-
