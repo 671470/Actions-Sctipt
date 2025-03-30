@@ -11,7 +11,7 @@ def run_actions_importer(github_org, github_repo, github_token, gitlab_token):
     subprocess.run(migrate_command, shell=True, check=True)
     print("GitHub Actions Importer completed.")
 
-def main(gitlab_repo, github_repo, gitlab_url, github_org, gitlab_token, github_token, gitlab_group_id):
+def main(gitlab_repo, github_repo, gitlab_token, github_token):
     try:
         # Check if tokens are set
         if not github_token or not gitlab_token:
