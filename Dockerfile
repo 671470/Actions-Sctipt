@@ -9,8 +9,7 @@ RUN apt-get update && \
     git \
     curl \
     gnupg \
-    libicu-dev \ # Install ICU development libraries
-    icu-devtools && \ #install icu dev tools
+    libicu-dev && \ # Install ICU development libraries
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null && \
     echo "deb [signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee -a /etc/apt/sources.list.d/github-cli.list && \
     apt-get update && \
