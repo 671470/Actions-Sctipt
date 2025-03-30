@@ -33,4 +33,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     
-    main(args.gitlab_repo, args.github_repo, args.gitlab_url, args.github_org, args.gitlab_token, args.github_token, args.gitlab_group_id)
+    main(args.gitlab_repo, args.github_repo, args.gitlab_token, args.github_token)
