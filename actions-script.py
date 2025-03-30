@@ -17,20 +17,24 @@ def main(gitlab_repo, github_repo, gitlab_token, github_token, github_org):
         if not github_token or not gitlab_token:
             raise ValueError("GitHub or GitLab token is missing!")
 
+        print(f"Starting migration from GitLab: {gitlab_repo} to GitHub: {github_org}/{github_repo}")
+
         run_actions_importer(github_org, github_repo, github_token, gitlab_token)
 
-        print("Actions Importer completed")
+        print("Actions Importer completed successfully.")
 
     except Exception as e:
         print(f"Error: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Migrate GitLab repository to GitHub.")
     parser.add_argument("--gitlab-repo", required=True, help="GitLab repository name (e.g. group/project)")
     parser.add_argument("--github-repo", required=True, help="GitHub repository name")
+    parser.add_argument("--github-org", required=True, help="GitHub organization name")  # ✅ Added this
     parser.add_argument("--gitlab-token", required=True, help="GitLab token")
     parser.add_argument("--github-token", required=True, help="GitHub token")
 
     args = parser.parse_args()
     
-    main(args.gitlab_repo, args.github_repo, args.gitlab_token, args.github_token)
+    main(args.gitlab_repo, args.github_repo, args.gitlab_token, args.github_token, args.github_org)  # ✅ Added github_org
