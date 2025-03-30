@@ -18,13 +18,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install the GitHub Actions Importer CLI tool
-# Pass the GitHub token as a build argument
-ARG GH_TOKEN
-
-# Authenticate gh using the token, and then clear the environment variable.
-RUN echo "$GH_TOKEN" | gh auth login --with-token && unset GH_TOKEN
-
-# Install the github action importer
 RUN gh extension install github/actions-importer
 
 # Copy the Python script and any other necessary files
