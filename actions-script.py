@@ -5,6 +5,14 @@ from github import Github
 import subprocess
 import requests
 
+def run_actions_importer(github_org,github_repo,github_token,gitlab_token):
+     #GitHub Actions Importer
+    migrate_command = f"""
+    gh actions-importer migrate gitlab --target-url https://github.com/{github_org}/{github_repo} --output-dir tmp/migrate --namespace bachelor-vizrt --project unit-testing-class-2023-java --github-access-token {github_token} --gitlab-access-token {gitlab_token}
+    """
+    subprocess.run(migrate_command, shell=True, check=True)
+    print("GitHub Actins Importer completed.")
+
 
 def main(gitlab_repo, github_repo, gitlab_url, github_org, gitlab_token, github_token, gitlab_group_id):
     try:
@@ -12,19 +20,9 @@ def main(gitlab_repo, github_repo, gitlab_url, github_org, gitlab_token, github_
         if not github_token or not gitlab_token:
             raise ValueError("GitHub or GitLab token is missing!")
 
-    #GitHub Actions Importer
-    migrate_command = f"""
-    gh actions-importer migrate gitlab --target-url https://github.com/{github_org}/{github_repo} --output-dir tmp/migrate --namespace bachelor-vizrt --project unit-testing-class-2023-java --github-access-token {github_token} --gitlab-access-token {gitlab_token}
-    """
-    subprocess.run(migrate_command, shell=True, check=True)
-    print("GitHub Actins Importer completed.")
-
+    run_actions_importer(github_org,github_repo,github_token,gitlab_token)
+    printf("Actions Importer completed")
     
-    except subprocess.CalledProcessError as e:
-        print(f"Error during migration: {e}")
-    
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")        
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Migrate GitLab repository to GitHub.")
