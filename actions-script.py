@@ -28,11 +28,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Migrate GitLab repository to GitHub.")
     parser.add_argument("--gitlab-repo", required=True, help="GitLab repository name (e.g. group/project)")
     parser.add_argument("--github-repo", required=True, help="GitHub repository name")
-    parser.add_argument("--gitlab-url", required=True, help="GitLab URL")
     parser.add_argument("--gitlab-token", required=True, help="GitLab token")
     parser.add_argument("--github-token", required=True, help="GitHub token")
-    parser.add_argument("--github-org", required=True, help="GitHub organization name")  # Added
-    parser.add_argument("--gitlab-group-id", required=True, help="GitLab group ID")  # Added
 
     args = parser.parse_args()
     
