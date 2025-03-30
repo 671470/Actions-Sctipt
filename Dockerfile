@@ -14,7 +14,8 @@ RUN apt-get update && \
     echo "deb [signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee -a /etc/apt/sources.list.d/github-cli.list && \
     apt-get update && \
     apt-get install gh -y && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get install -y docker.io # Install Docker
 
 COPY actions-script.py /app/actions-script.py
 
