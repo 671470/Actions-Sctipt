@@ -19,4 +19,6 @@ RUN pip install --upgrade pip
 RUN pip install requests PyGithub python-gitlab python-dotenv
 
 # Install the actions-importer extension
-RUN gh extension install github/gh-actions-importer
+RUN GH_TOKEN=$GITHUB_TOKEN gh extension install github/gh-actions-importer
+
+ARG GITHUB_TOKEN
