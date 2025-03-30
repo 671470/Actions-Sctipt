@@ -10,8 +10,8 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/g
 # Install GitHub CLI
 RUN apt-get update && apt-get install -y gh
 
-# Authenticate and install the extension with gh- prefix
-RUN echo "$GITHUB_TOKEN" | gh auth login --with-token && gh extension install gh-actions-importer
+# Authenticate and install the extension with correct repository format
+RUN echo "$GITHUB_TOKEN" | gh auth login --with-token && gh extension install github/gh-actions-importer
 
 # Verify installation
 RUN gh extension list
