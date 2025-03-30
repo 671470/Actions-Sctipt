@@ -1,5 +1,7 @@
 FROM python:3.9-slim-buster
 
+ARG GITHUB_TOKEN # Move ARG instruction to the top
+
 WORKDIR /app
 
 RUN apt-get update && \
@@ -20,5 +22,3 @@ RUN pip install requests PyGithub python-gitlab python-dotenv
 
 # Install the actions-importer extension
 RUN GH_TOKEN=$GITHUB_TOKEN gh extension install github/gh-actions-importer
-
-ARG GITHUB_TOKEN
