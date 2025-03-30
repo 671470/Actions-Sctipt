@@ -15,7 +15,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install gh -y && \
     rm -rf /var/lib/apt/lists/* && \
-    apt-get install -y docker.io # Install Docker
+    apt-get install -y docker # Install Docker
 
 COPY actions-script.py /app/actions-script.py
 
