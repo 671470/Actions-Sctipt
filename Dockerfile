@@ -17,9 +17,6 @@ RUN apt-get update && \
     apt-get install gh -y && \
     rm -rf /var/lib/apt/lists/*
 
-# Install the GitHub Actions Importer CLI tool
-RUN gh extension install github/actions-importer
-
 # Copy the Python script and any other necessary files
 COPY actions-script.py /app/actions-script.py
 
