@@ -15,7 +15,6 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install gh -y && \
     rm -rf /var/lib/apt/lists/* && \
-    # Add Docker's official repository
     apt-get update && \
     apt-get install -y apt-transport-https ca-certificates lsb-release && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
@@ -30,3 +29,6 @@ RUN pip install requests PyGithub python-gitlab python-dotenv
 
 # Install the actions-importer extension
 RUN GH_TOKEN=$GITHUB_TOKEN gh extension install github/gh-actions-importer
+
+# Verify docker installation
+RUN docker --version
